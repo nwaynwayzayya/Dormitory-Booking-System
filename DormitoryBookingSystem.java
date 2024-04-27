@@ -69,31 +69,45 @@ public class DormitoryBookingSystem {
     }
     
 
-    private static void bookRoom(Scanner scanner) {
-        System.out.print("Enter student name: ");
-        String studentName = scanner.nextLine();
-        System.out.print("Enter student ID: ");
-        int studentId = scanner.nextInt();
-        scanner.nextLine(); // Consume newline character
-
-        Student student = new Student(studentName, studentId);
-        students.add(student);
-
-        System.out.print("Enter room number: ");
-        String roomNumber = scanner.nextLine();
-
-        Room room = findRoombyNumber(roomNumber);
-        if (room != null) {
-            try {
-                student.bookRoom(room);
-                System.out.println("Room " + room.getName() + " booked successfully.");
-            } catch (RoomNotAvailableException e) {
-                System.out.println(e.getMessage());
+        private static void bookRoom(Scanner scanner) {
+        try {
+            System.out.print("Enter student name: ");
+            String studentName = scanner.nextLine();
+            if (!studentName.matches("[a-zA-Z ]+")) { // Check if the name contains only alphabets and spaces
+                throw new IllegalArgumentException("Invalid student name. Please enter alphabets only.");
             }
-        } else {
-            System.out.println("Room " + roomNumber + " not found.");
+            
+            System.out.print("Enter student ID: ");
+            String studentIdStr = scanner.nextLine();
+            if (!studentIdStr.matches("\\d+")) { // Check if the ID contains only digits
+                throw new IllegalArgumentException("Invalid student ID. Please enter digits only.");
+            }
+            int studentId = Integer.parseInt(studentIdStr);
+    
+            Student student = new Student(studentName, studentId);
+            students.add(student);
+    
+            System.out.print("Enter room number: ");
+            String roomNumber = scanner.nextLine();
+    
+            Room room = findRoombyNumber(roomNumber);
+            if (room != null) {
+                try {
+                    student.bookRoom(room);
+                    System.out.println("Room " + room.getName() + " booked successfully.");
+                } catch (RoomNotAvailableException e) {
+                    System.out.println(e.getMessage());
+                }
+            } else {
+                System.out.println("Room " + roomNumber + " not found.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input for student ID. Please enter a valid number.");
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
         }
     }
+    
 
     private static void releaseRoom(Scanner scanner) {
         System.out.print("Enter student ID: ");
