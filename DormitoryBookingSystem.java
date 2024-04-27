@@ -95,6 +95,7 @@ public class DormitoryBookingSystem {
                 try {
                     student.bookRoom(room);
                     System.out.println("Room " + room.getName() + " booked successfully.");
+                    System.out.println("Rent for your room is " + student.calculateRoomRent() + " Baht.");
                 } catch (RoomNotAvailableException e) {
                     System.out.println(e.getMessage());
                 }
