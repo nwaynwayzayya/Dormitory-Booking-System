@@ -1,10 +1,10 @@
 // Student class
 class Student implements Accommodation{
     private String name;
-    private int id;
+    private long id;
     private Room bookedRoom;
 
-    public Student(String name, int id) {
+    public Student(String name, long id) {
         this.name = name;
         this.id = id;
         this.bookedRoom = null;
@@ -14,7 +14,7 @@ class Student implements Accommodation{
         return name;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 

@@ -82,14 +82,14 @@ public class DormitoryBookingSystem {
             if (!studentIdStr.matches("\\d+")) { // Check if the ID contains only digits
                 throw new IllegalArgumentException("Invalid student ID. Please enter digits only.");
             }
-            int studentId = Integer.parseInt(studentIdStr);
-    
+            long studentId = Long.parseLong(studentIdStr);
+            
             Student student = new Student(studentName, studentId);
             students.add(student);
-    
+        
             System.out.print("Enter room number: ");
             String roomNumber = scanner.nextLine();
-    
+        
             Room room = findRoombyNumber(roomNumber);
             if (room != null) {
                 try {
@@ -112,6 +112,7 @@ public class DormitoryBookingSystem {
             System.out.println(e.getMessage());
         }
     }
+    
     
 
     private static void releaseRoom(Scanner scanner) {
