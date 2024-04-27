@@ -1,45 +1,38 @@
-public class Room {
-    private int roomId;
-    private String roomType; // Single, Double, etc.
-    private boolean availability; // True if available, False if booked
-
-    public Room(int roomId, String roomType) {
-        this.roomId = roomId;
-        this.roomType = roomType;
-        this.availability = true; // Initially available
-    }
-
-    public int getRoomId() {
-        return roomId;
-    }
-
-    public String getRoomType() {
-        return roomType;
-    }
-
-    public boolean isAvailable() {
-        return availability;
-    }
-
-    public void setAvailability(boolean availability) {
-        this.availability = availability;
-    }
-}
-
-public class User {
+// Dorm class
+class Room {
     private String name;
-    private String studentId;
+    private int capacity;
+    private boolean available;
+    private double rent;
 
-    public User(String name, String studentId) {
+    public Room(String name, int capacity, double rent) {
         this.name = name;
-        this.studentId = studentId;
+        this.capacity = capacity;
+        this.available = true;
+        this.rent = rent;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getStudentId() {
-        return studentId;
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public double getRent(){
+        return rent;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void bookRoom() {
+        this.available = false;
+    }
+
+    public void releaseRoom() {
+        this.available = true;
     }
 }

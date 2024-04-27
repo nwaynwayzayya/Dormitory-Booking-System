@@ -1,13 +1,13 @@
 // Student class
-class Student {
+class Student implements Accommodation{
     private String name;
     private int id;
-    private Dorm bookedDorm;
+    private Room bookedRoom;
 
     public Student(String name, int id) {
         this.name = name;
         this.id = id;
-        this.bookedDorm = null;
+        this.bookedRoom = null;
     }
 
     public String getName() {
@@ -18,23 +18,25 @@ class Student {
         return id;
     }
 
-    public Dorm getBookedDorm() {
-        return bookedDorm;
+    public Room getBookedRoom() {
+        return bookedRoom;
     }
 
-    public void bookDorm(Dorm dorm) throws DormNotAvailableException {
-        if (dorm.isAvailable()) {
-            this.bookedDorm = dorm;
-            dorm.bookDorm();
+    @Override
+    public void bookRoom(Room room) throws RoomNotAvailableException {
+        if (room.isAvailable()) {
+            this.bookedRoom = room;
+            room.bookRoom();
         } else {
-            throw new DormNotAvailableException("Dorm " + dorm.getName() + " is not available.");
+            throw new RoomNotAvailableException("Dorm " + room.getName() + " is not available.");
         }
     }
 
-    public void releaseDorm() {
-        if (bookedDorm != null) {
-            bookedDorm.releaseDorm();
-            bookedDorm = null;
+    @Override
+    public void releaseRoom() {
+        if (bookedRoom != null) {
+            bookedRoom.releaseRoom();
+            bookedRoom = null;
         }
     }
 }
