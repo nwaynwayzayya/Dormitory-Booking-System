@@ -95,7 +95,11 @@ public class DormitoryBookingSystem {
                 try {
                     student.bookRoom(room);
                     System.out.println("Room " + room.getName() + " booked successfully.");
-                    System.out.println("Rent for your room is " + student.calculateRoomRent() + " Baht.");
+                    System.out.println("Rent for your room is " + calculateRoomRent(student) + " Baht.");
+                    System.out.println("Electricity fee is 300 baht and we charge 100 baht for water per month.");
+                    System.out.println("Insurance fee is 2000 baht.");
+                    System.out.println("Total rent you need in the first month is " + (calculateRoomRent(student)+2400)+ " baht.");
+                    System.out.println();
                 } catch (RoomNotAvailableException e) {
                     System.out.println(e.getMessage());
                 }
