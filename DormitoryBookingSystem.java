@@ -8,20 +8,33 @@ public class DormitoryBookingSystem {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-
+    
         // Read rooms from file
         readRoomsFromFile("rooms.txt");
-
+    
         // Interact with the system
         while (true) {
             System.out.println("1. Book a room");
             System.out.println("2. Release a room");
             System.out.println("3. View available rooms");
             System.out.println("4. Exit");
-
-            int choice = scanner.nextInt();
+    
+            // Loop until a valid integer choice is entered
+            int choice;
+            while (true) {
+                System.out.print("Enter your choice: ");
+                if (scanner.hasNextInt()) {
+                    choice = scanner.nextInt();
+                    break; // Break out of the loop if a valid integer is entered
+                } else {
+                    System.out.println("Invalid input. Please enter a number.");
+                    System.out.println();
+                    scanner.next(); // Consume the invalid input
+                }
+            }
+    
             scanner.nextLine(); // Consume newline character
-
+    
             switch (choice) {
                 case 1:
                     bookRoom(scanner);
@@ -37,9 +50,11 @@ public class DormitoryBookingSystem {
                     return;
                 default:
                     System.out.println("Invalid choice. Please try again.");
+                    System.out.println();
             }
         }
     }
+    
 
     private static void readRoomsFromFile(String filename) {
         try {
