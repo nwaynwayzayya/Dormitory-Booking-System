@@ -114,7 +114,6 @@ public class DormitoryBookingSystem {
     }
     
     
-
     private static void releaseRoom(Scanner scanner) {
         System.out.print("Enter student ID: ");
         long studentId = scanner.nextLong();
