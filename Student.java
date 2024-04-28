@@ -28,7 +28,7 @@ class Student implements Accommodation{
             this.bookedRoom = room;
             room.bookRoom();
         } else {
-            throw new RoomNotAvailableException("Dorm " + room.getName() + " is not available.");
+            throw new RoomNotAvailableException("Room " + room.getName() + " is not available.");
         }
     }
 

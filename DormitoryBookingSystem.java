@@ -96,9 +96,9 @@ public class DormitoryBookingSystem {
                     student.bookRoom(room);
                     System.out.println("Room " + room.getName() + " booked successfully.");
                     System.out.println("Rent for your room is " + calculateRoomRent(student) + " Baht.");
-                    System.out.println("Electricity fee is 300 baht and we charge 100 baht for water per month.");
+                    System.out.println("Electricity fee: 300 baht/month\nWater fee: 100/month");
                     System.out.println("Insurance fee is 2000 baht.");
-                    System.out.println("Total rent you need in the first month is " + (calculateRoomRent(student)+2400)+ " baht.");
+                    System.out.println("Total rent you need to pay in the first month is " + (calculateRoomRent(student)+2400)+ " baht.");
                     System.out.println();
                 } catch (RoomNotAvailableException e) {
                     System.out.println(e.getMessage());
@@ -117,9 +117,9 @@ public class DormitoryBookingSystem {
 
     private static void releaseRoom(Scanner scanner) {
         System.out.print("Enter student ID: ");
-        int studentId = scanner.nextInt();
+        long studentId = scanner.nextLong();
         scanner.nextLine(); // Consume newline character
-
+    
         Student student = findStudentById(studentId);
         if (student != null) {
             Room bookedRoom = student.getBookedRoom();
@@ -133,6 +133,7 @@ public class DormitoryBookingSystem {
             System.out.println("Student with ID " + studentId + " not found.");
         }
     }
+    
 
     private static void viewAvailableRooms() {
         System.out.println("Available rooms:");
@@ -152,7 +153,7 @@ private static Room findRoombyNumber(String name) {
         return null;
     }
 
-    private static Student findStudentById(int id) {
+    private static Student findStudentById(long id) {
         for (Student student : students) {
             if (student.getId() == id) {
                 return student;
